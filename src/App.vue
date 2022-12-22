@@ -1,36 +1,35 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+
+const drawer = ref(false)
+
+
 </script>
 
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    </v-app-bar>
+    <v-navigation-drawer
+        v-model="drawer"
+        location="left"
+        class="bg-deep-purple"
+        theme="dark"
+        temporary
+      >
+        <v-list
+          :items="[]"
+        ></v-list>
+      </v-navigation-drawer>
+  </v-app>
   <RouterView />
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+<!-- <style scoped>
+
 
 .logo {
   display: block;
@@ -88,4 +87,4 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
-</style>
+</style> -->
